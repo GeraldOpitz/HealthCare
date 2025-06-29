@@ -45,13 +45,14 @@ jobs:
 
     - name: Ejecutar pruebas unitarias y funcionales
       run: mvn test
-      continue-on-error: true
       env:
         DISPLAY: :99
 
     - name: Generar reporte HTML de pruebas
+      if: always()
       run: mvn surefire-report:report
     - name: Subir reporte HTML
+      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: reporte-pruebas-html
