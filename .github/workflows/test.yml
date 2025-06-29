@@ -51,7 +51,7 @@ jobs:
     - name: Generar reporte HTML de pruebas
       run: mvn surefire-report:report
     - name: Subir reporte HTML
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: reporte-pruebas-html
         path: target/site/surefire-report.html
