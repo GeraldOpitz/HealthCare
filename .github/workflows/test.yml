@@ -70,6 +70,6 @@ jobs:
 
     - name: Analisis estatico con SonarQube
       if: always()
-      run: mvn verify sonar:sonar -Dsonar.projectKey=GeraldOpitz_HealthCare -Dsonar.organization=geraldopitz -Dsonar.host.url=https://sonarcloud.io
+      run: mvn sonar:sonar -Dsonar.projectKey=GeraldOpitz_HealthCare -Dsonar.organization=geraldopitz -Dsonar.host.url=https://sonarcloud.io
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
