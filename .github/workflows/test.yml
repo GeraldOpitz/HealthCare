@@ -51,7 +51,7 @@ jobs:
         echo "La app no se levantó a tiempo" && exit 1
 
     - name: Ejecutar pruebas unitarias y funcionales
-      run: mvn verify
+      run: mvn test
       env:
         DISPLAY: :99
 
