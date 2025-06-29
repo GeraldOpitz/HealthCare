@@ -56,4 +56,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: reporte-pruebas-html
-        path: target/site/surefire-report.html
+        path: target/site/
