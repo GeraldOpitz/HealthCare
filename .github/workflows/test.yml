@@ -10,38 +10,40 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
-    services:
-      selenium:
-        image: selenium/standalone-chrome
-        ports:
-          - 4444:4444
-
     steps:
     - name: Checkout del código
       uses: actions/checkout@v3
+
+    - name: Configurar caché de dependencias Maven
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
 
     - name: Configurar JDK 17
       uses: actions/setup-java@v3
       with:
         distribution: 'temurin'
         java-version: '17'
-    - name: Instalar dependencias Maven
-      run: mvn install -DskipTests
 
-    - name: Construir la app
+    - name: Compilar y empaquetar la app
       run: mvn clean package -DskipTests
 
     - name: Iniciar la app en segundo plano
       run: java -jar target/health-1.0-SNAPSHOT.jar &
-
+    
     - name: Esperar que la app esté disponible
       run: |
         for i in {1..10}; do
-        nc -zv localhost 8080 && break
-        sleep 2
+          nc -z localhost 8080 && echo "App levantada" && exit 0
+          echo "Esperando que la app se levante..."
+          sleep 3
         done
+        echo "La app no se levantó a tiempo" && exit 1
 
-    - name: Ejecutar pruebas
+    - name: Ejecutar pruebas unitarias y funcionales
       run: mvn test
       env:
         DISPLAY: :99
