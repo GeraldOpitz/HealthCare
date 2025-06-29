@@ -13,7 +13,7 @@
         <input type="number" name="nuevoPeso" id="nuevoPeso" step="0.01" required>
         <button type="submit">Actualizar</button>
     </form>
-    <div th:if="${mensaje}">
+    <div id="mensaje" th:if="${mensaje}">
         <p style="color: green;" th:text="${mensaje}"></p>
     </div>
 </body>
