@@ -84,6 +84,7 @@
           </executions>
           <configuration>
             <mainClass>com.healthtrack.HealthtrackApplication</mainClass>
+            <outputDirectory>${project.build.directory}/site/jacoco</outputDirectory>
           </configuration>
         </plugin>
         <plugin>
