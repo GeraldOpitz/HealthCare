@@ -1,6 +1,7 @@
 package com.healthtrack;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +17,6 @@ public class UsuarioRegresionTest {
     @Test
     public void testPesoCorrecto() {
         user.actualizarPeso(75.0);
-
         assertEquals(75.0, user.getPeso(), "El peso no se actualizo correctamente");
 
     }
@@ -29,10 +29,9 @@ public class UsuarioRegresionTest {
     }
 
     @Test
-    public void testPesoDescuentaUnKilo() {
-        double pesoInicial = user.getPeso();
+    public void testPesoNoDescuentaUnKilo() {
         user.actualizarPeso(75.0);
-        assertEquals(pesoInicial - 1, user.getPeso(), "El peso no debe decrecer en 1kg");
+        assertNotEquals(99.0, user.getPeso(), "El peso no debe decrecer en 1kg");
 
     }
 }

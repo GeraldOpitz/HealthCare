@@ -1,6 +1,7 @@
 package com.healthtrack;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.Test;
 
 public class UsuarioTest {
@@ -16,7 +17,7 @@ public class UsuarioTest {
     public void testActualizarPeso_Error() {
         Usuario user = new Usuario("Miguel", 70.0);
         user.actualizarPeso(65.0);
-        assertEquals(69.0, user.getPeso(), "Se espera un error en la actualizacion del peso");
+        assertNotEquals(69.0, user.getPeso(), "Se comprueba que el peso no se actualiza incorrectamente");
     }
 
 }
