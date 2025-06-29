@@ -25,18 +25,21 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '17'
-
-    - name: Cache Maven packages
-      uses: actions/cache@v3
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-         ${{ runner.os }}-maven-
-
-
     - name: Instalar dependencias Maven
       run: mvn install -DskipTests
+
+    - name: Construir la app
+      run: mvn clean package -DskipTests
+
+    - name: Iniciar la app en segundo plano
+      run: java -jar target/health-1.0.jar &
+
+    - name: Esperar que la app esté disponible
+      run: |
+        for i in {1..10}; do
+        nc -zv localhost 8080 && break
+        sleep 2
+        done
 
     - name: Ejecutar pruebas
       run: mvn test
