@@ -32,7 +32,7 @@ jobs:
       run: mvn clean package -DskipTests
 
     - name: Iniciar la app en segundo plano
-      run: java -jar target/health-1.0.jar &
+      run: java -jar target/health-1.0-SNAPSHOT.jar &
 
     - name: Esperar que la app esté disponible
       run: |
