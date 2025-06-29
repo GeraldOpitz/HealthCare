@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.healthtrack.UsuarioTest
--------------------------------------------------------------------------------
-Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.038 s <<< FAILURE! - in com.healthtrack.UsuarioTest
-testActualizarPeso  Time elapsed: 0.022 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: El peso no se actualizó correctamente ==> expected: <55.0> but was: <59.0>
-	at com.healthtrack.UsuarioTest.testActualizarPeso(UsuarioTest.java:12)
-
