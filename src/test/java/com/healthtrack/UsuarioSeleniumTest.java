@@ -15,16 +15,25 @@ public class UsuarioSeleniumTest {
 
     private WebDriver driver;
 
+    private final boolean headless = Boolean.parseBoolean(System.getProperty("headless", "true"));
+
     @BeforeEach
     public void setUp() {
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        options.addArguments("--disable-gpu");
-        options.addArguments("--window-size=1920,1080");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
+
+        if (headless) {
+            options.addArguments("--headless");
+            options.addArguments("--disable-gpu");
+            options.addArguments("--window-size=1920,1080");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--remote-allow-origins=*");
+        } else {
+            options.addArguments("--start-maximized");
+        }
+
         options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);

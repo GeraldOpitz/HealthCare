@@ -2,7 +2,7 @@ package com.healthtrack;
 
 public class Usuario {
 
-    private String nombre;
+    private final String nombre;
     private double peso;
 
     public Usuario(String nombre, double peso) {
